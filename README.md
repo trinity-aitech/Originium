@@ -1,4 +1,4 @@
-# 🔗 Linktree da Temu
+# 🔗 Originium
 
 Plataforma estilo Linktree em **PHP 8+ puro**, **MySQL** e **TailwindCSS** (sem Node, sem framework JS).
 Arquitetura **MVC simples**, pronta para **hospedagem compartilhada**.
