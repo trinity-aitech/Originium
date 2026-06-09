@@ -1,0 +1,86 @@
+/* Originium — estilos complementares ao Tailwind (CDN)
+   Estética: dark premium, glassmorphism discreto, brilho frio (sky/indigo). */
+
+:root {
+  --ink: #08080a;
+  --accent: 56, 189, 248;   /* sky-400 */
+  --accent-2: 99, 102, 241; /* indigo-500 */
+}
+
+html { scroll-behavior: smooth; }
+body { background: var(--ink); }
+
+/* ---------- Glassmorphism ---------- */
+.glass {
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.glass-strong {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+/* ---------- "Eclipse" do hero (inspirado em Launch UI, em tom frio) ---------- */
+.eclipse-wrap { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+
+.eclipse-glow {
+  position: absolute;
+  left: 50%;
+  top: 62%;
+  transform: translate(-50%, -50%);
+  width: 90vw;
+  max-width: 1000px;
+  height: 560px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--accent), 0.22), rgba(var(--accent-2), 0.10) 45%, transparent 70%);
+  filter: blur(50px);
+}
+
+.eclipse {
+  position: absolute;
+  left: 50%;
+  top: 60%;
+  transform: translateX(-50%);
+  width: 150vw;
+  max-width: 1400px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: #060608;
+  border-top: 1px solid rgba(var(--accent), 0.8);
+  box-shadow: 0 -2px 120px 10px rgba(var(--accent), 0.35);
+}
+
+/* ---------- Detalhes ---------- */
+.text-gradient {
+  background: linear-gradient(180deg, #fff 0%, #9ca3af 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Accordion (FAQ) com <details> nativo, sem JS */
+details > summary { list-style: none; cursor: pointer; }
+details > summary::-webkit-details-marker { display: none; }
+details[open] .faq-icon { transform: rotate(45deg); }
+.faq-icon { transition: transform 0.2s ease; }
+
+/* Animação suave de entrada */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.rise { animation: rise 0.6s ease both; }
+.rise-2 { animation: rise 0.6s ease 0.1s both; }
+.rise-3 { animation: rise 0.6s ease 0.2s both; }
+
+/* Auto-esconde flash */
+.flash-msg { animation: rise 0.4s ease both; }
+
+/* Scrollbar discreta */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.18); }

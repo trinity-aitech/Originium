@@ -1,0 +1,24 @@
+# Originium — rewrite + segurança (Apache / hospedagem compartilhada)
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Não reescreve arquivos/diretórios existentes (assets, uploads...)
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # Tudo o mais vai para o front controller
+    RewriteRule ^ index.php [L]
+</IfModule>
+
+# Cabeçalhos de segurança
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+</IfModule>
+
+# Sem listagem de diretórios
+Options -Indexes

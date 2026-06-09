@@ -1,0 +1,15 @@
+# Proteção da raiz do projeto.
+#
+# Em produção, o ideal é apontar o Document Root para a pasta /public.
+# Onde isso não for possível (hospedagem compartilhada simples), acesse
+# o site por .../public/ — estas regras impedem acesso aos arquivos internos.
+
+Options -Indexes
+
+# Bloqueia o arquivo de ambiente e afins
+<FilesMatch "^(\.env.*|composer\.(json|lock)|.*\.md|.*\.sql)$">
+    Require all denied
+</FilesMatch>
+
+# Bloqueia acesso direto às pastas de código
+RedirectMatch 403 ^/[^/]*/(app|config|database|storage)(/|$)
