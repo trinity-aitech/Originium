@@ -17,3 +17,6 @@ Desktop.ini
 .idea/
 .vscode/
 *.log
+
+dev-router.php
+.claude/

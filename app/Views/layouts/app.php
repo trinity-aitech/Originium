@@ -1,4 +1,5 @@
 <?php
+$forceDark = true; // o painel usa tema escuro fixo nesta versão
 $bodyClass = 'bg-ink text-zinc-200';
 require BASE_DIR . '/app/Views/partials/head.php';
 

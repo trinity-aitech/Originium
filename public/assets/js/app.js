@@ -3,6 +3,14 @@
 (function () {
   'use strict';
 
+  // Alternar tema claro/escuro (persistido em localStorage)
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('[data-theme-toggle]')) {
+      const isDark = document.documentElement.classList.toggle('dark');
+      try { localStorage.setItem('theme', isDark ? 'dark' : 'light'); } catch (err) {}
+    }
+  });
+
   // Menu mobile
   document.addEventListener('click', function (e) {
     const toggle = e.target.closest('[data-menu-toggle]');

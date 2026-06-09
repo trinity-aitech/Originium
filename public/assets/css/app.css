@@ -1,86 +1,97 @@
 /* Originium — estilos complementares ao Tailwind (CDN)
-   Estética: dark premium, glassmorphism discreto, brilho frio (sky/indigo). */
+   Estética: editorial claro (off-white) + modo escuro. Destaque laranja.
+   Glassmorphism discreto, theme-aware (claro por padrão, .dark para escuro). */
 
 :root {
   --ink: #08080a;
-  --accent: 56, 189, 248;   /* sky-400 */
-  --accent-2: 99, 102, 241; /* indigo-500 */
+  --paper: #faf9f6;
+  --accent: 234, 88, 12;   /* orange-600 */
+  --accent-2: 245, 158, 11; /* amber-500 */
 }
 
 html { scroll-behavior: smooth; }
-body { background: var(--ink); }
+body { background: var(--paper); }
+.dark body { background: var(--ink); }
 
-/* ---------- Glassmorphism ---------- */
+.font-display { font-family: 'Fraunces', Georgia, 'Times New Roman', serif; }
+
+/* ---------- Glassmorphism (theme-aware) ---------- */
 .glass {
-  background: rgba(255, 255, 255, 0.045);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.025);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
 }
+.dark .glass {
+  background: rgba(255, 255, 255, 0.045);
+  border-color: rgba(255, 255, 255, 0.08);
+}
 .glass-strong {
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(0, 0, 0, 0.06);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
 }
+.dark .glass-strong {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.12);
+}
 
-/* ---------- "Eclipse" do hero (inspirado em Launch UI, em tom frio) ---------- */
-.eclipse-wrap { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+/* ---------- Campos de formulário (theme-aware) ---------- */
+.field {
+  width: 100%;
+  border-radius: 0.75rem;
+  padding: 0.625rem 1rem;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  color: #18181b;
+  outline: none;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+.field::placeholder { color: #a1a1aa; }
+.field:focus {
+  border-color: rgba(var(--accent), 0.6);
+  box-shadow: 0 0 0 3px rgba(var(--accent), 0.15);
+}
+.dark .field {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+.dark .field::placeholder { color: #71717a; }
 
-.eclipse-glow {
+/* ---------- Brilho suave do hero (theme-aware) ---------- */
+.glow-soft {
   position: absolute;
   left: 50%;
-  top: 62%;
+  top: 40%;
   transform: translate(-50%, -50%);
-  width: 90vw;
-  max-width: 1000px;
-  height: 560px;
+  width: 70vw;
+  max-width: 800px;
+  height: 420px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(var(--accent), 0.22), rgba(var(--accent-2), 0.10) 45%, transparent 70%);
-  filter: blur(50px);
+  background: radial-gradient(circle, rgba(var(--accent), 0.16), rgba(var(--accent-2), 0.08) 45%, transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
 }
 
-.eclipse {
-  position: absolute;
-  left: 50%;
-  top: 60%;
-  transform: translateX(-50%);
-  width: 150vw;
-  max-width: 1400px;
-  aspect-ratio: 1 / 1;
-  border-radius: 50%;
-  background: #060608;
-  border-top: 1px solid rgba(var(--accent), 0.8);
-  box-shadow: 0 -2px 120px 10px rgba(var(--accent), 0.35);
-}
-
-/* ---------- Detalhes ---------- */
-.text-gradient {
-  background: linear-gradient(180deg, #fff 0%, #9ca3af 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-/* Accordion (FAQ) com <details> nativo, sem JS */
+/* ---------- Accordion (FAQ) com <details>, sem JS ---------- */
 details > summary { list-style: none; cursor: pointer; }
 details > summary::-webkit-details-marker { display: none; }
 details[open] .faq-icon { transform: rotate(45deg); }
 .faq-icon { transition: transform 0.2s ease; }
 
-/* Animação suave de entrada */
+/* ---------- Animações ---------- */
 @keyframes rise {
-  from { opacity: 0; transform: translateY(12px); }
+  from { opacity: 0; transform: translateY(14px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-.rise { animation: rise 0.6s ease both; }
-.rise-2 { animation: rise 0.6s ease 0.1s both; }
-.rise-3 { animation: rise 0.6s ease 0.2s both; }
-
-/* Auto-esconde flash */
+.rise   { animation: rise 0.7s cubic-bezier(.2,.7,.2,1) both; }
+.rise-2 { animation: rise 0.7s cubic-bezier(.2,.7,.2,1) 0.1s both; }
+.rise-3 { animation: rise 0.7s cubic-bezier(.2,.7,.2,1) 0.2s both; }
 .flash-msg { animation: rise 0.4s ease both; }
 
-/* Scrollbar discreta */
+/* ---------- Scrollbar discreta ---------- */
 ::-webkit-scrollbar { width: 10px; height: 10px; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 99px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.18); }
+::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 99px; }
+.dark ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); }
