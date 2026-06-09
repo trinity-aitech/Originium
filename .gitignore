@@ -1,0 +1,19 @@
+# Configuração sensível
+.env
+
+# Logs e uploads gerados em runtime
+storage/logs/*
+!storage/logs/.gitkeep
+public/assets/uploads/*
+!public/assets/uploads/.gitkeep
+
+# Dependências (caso use Composer no futuro)
+/vendor/
+
+# Arquivos de SO / editor
+Thumbs.db
+Desktop.ini
+.DS_Store
+.idea/
+.vscode/
+*.log
