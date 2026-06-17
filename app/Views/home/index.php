@@ -18,65 +18,69 @@ $faqs = [
 ];
 ?>
 
-<!-- HERO -->
-<section class="relative overflow-hidden">
-    <div class="landing-aura" aria-hidden="true"><span></span><span></span><span></span></div>
+<!-- HERO com vídeo de fundo (contido, com bordas, em loop mudo) -->
+<section class="px-3 sm:px-5 pt-4">
+    <div class="hero-stage relative overflow-hidden rounded-[2rem] sm:rounded-[2.5rem] border border-white/10 mx-auto max-w-7xl">
+        <!-- Vídeo de fundo: mudo, em loop, sem controles -->
+        <video class="hero-video" autoplay muted loop playsinline preload="auto" disablepictureinpicture aria-hidden="true">
+            <source src="<?= asset('videos/hero.mp4') ?>" type="video/mp4">
+        </video>
+        <div class="hero-overlay" aria-hidden="true"></div>
 
-    <div class="relative z-10 mx-auto max-w-6xl px-6 pt-10 sm:pt-16 text-center">
-        <h1 class="rise font-display font-semibold tracking-tight text-zinc-900 dark:text-white leading-[0.95]
-                   text-6xl sm:text-7xl md:text-8xl lg:text-[8.5rem]">
-            Reúna tudo.
-        </h1>
+        <!-- Conteúdo do hero (sempre claro sobre o vídeo) -->
+        <div class="relative z-10 px-6 pt-16 sm:pt-24 pb-12 text-center">
+            <h1 class="rise font-display font-semibold tracking-tight text-white leading-[0.95]
+                       text-6xl sm:text-7xl md:text-8xl lg:text-[8rem]"
+                style="text-shadow:0 2px 40px rgba(0,0,0,.4)">
+                Reúna tudo.
+            </h1>
 
-        <p class="rise-2 mt-7 text-lg sm:text-xl text-zinc-600 dark:text-zinc-400 max-w-xl mx-auto leading-relaxed">
-            Uma página minimalista para todos os seus links.
-            Simples de criar, elegante de compartilhar.
-        </p>
+            <p class="rise-2 mt-7 text-lg sm:text-xl text-zinc-200 max-w-xl mx-auto leading-relaxed">
+                Uma página minimalista para todos os seus links.
+                Simples de criar, elegante de compartilhar.
+            </p>
 
-        <div class="rise-3 mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
-            <a href="<?= url('register') ?>" class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-orange-600 text-white font-medium hover:bg-orange-500 transition">
-                Criar minha página
-            </a>
-            <a href="<?= url('/#recursos') ?>" class="w-full sm:w-auto px-7 py-3.5 rounded-full border border-black/10 dark:border-white/15 text-zinc-800 dark:text-zinc-200 font-medium hover:bg-black/5 dark:hover:bg-white/5 transition">
-                Ver recursos ↗
-            </a>
-        </div>
-    </div>
+            <div class="rise-3 mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
+                <a href="<?= url('register') ?>" class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-orange-600 text-white font-medium hover:bg-orange-500 transition shadow-lg shadow-orange-900/30">
+                    Criar minha página
+                </a>
+                <a href="<?= url('/#recursos') ?>" class="w-full sm:w-auto px-7 py-3.5 rounded-full border border-white/25 text-white font-medium hover:bg-white/10 transition backdrop-blur-sm">
+                    Ver recursos ↗
+                </a>
+            </div>
 
-    <!-- Mockup sobre painel laranja -->
-    <div class="relative z-10 mx-auto max-w-5xl px-6 mt-16">
-        <div class="rounded-[2.5rem] bg-orange-100 dark:bg-orange-500/10 pt-14 px-6 sm:px-14 overflow-hidden">
-            <div class="mx-auto max-w-sm rounded-t-[1.75rem] bg-white dark:bg-ink-50 border border-black/5 dark:border-white/10 shadow-2xl shadow-orange-900/10 px-6 pt-5 pb-10">
-                <!-- barra do "navegador" -->
-                <div class="flex items-center gap-1.5 pb-5">
-                    <span class="w-2.5 h-2.5 rounded-full bg-zinc-200 dark:bg-white/15"></span>
-                    <span class="w-2.5 h-2.5 rounded-full bg-zinc-200 dark:bg-white/15"></span>
-                    <span class="w-2.5 h-2.5 rounded-full bg-zinc-200 dark:bg-white/15"></span>
-                    <span class="ml-2 text-[10px] text-zinc-400">originium.app/u/maria</span>
-                </div>
-                <!-- preview de perfil -->
-                <div class="text-center">
-                    <div class="w-16 h-16 rounded-full mx-auto grid place-items-center bg-gradient-to-br from-amber-400 to-orange-600 text-white text-xl font-bold">M</div>
-                    <p class="mt-3 font-display text-lg font-semibold text-zinc-900 dark:text-white">Maria Silva</p>
-                    <p class="text-xs text-zinc-500">Designer & criadora de conteúdo</p>
-                </div>
-                <div class="mt-5 space-y-2.5">
-                    <div class="rounded-xl bg-zinc-100 dark:bg-white/5 border border-black/5 dark:border-white/10 py-2.5 text-center text-sm text-zinc-700 dark:text-zinc-200">📷 Instagram</div>
-                    <div class="rounded-xl bg-zinc-100 dark:bg-white/5 border border-black/5 dark:border-white/10 py-2.5 text-center text-sm text-zinc-700 dark:text-zinc-200">🎬 YouTube</div>
-                    <div class="rounded-xl bg-orange-600 py-2.5 text-center text-sm text-white">✨ Meu portfólio</div>
+            <!-- Mockup (dark, consistente sobre o vídeo) -->
+            <div class="mx-auto max-w-sm mt-16">
+                <div class="rounded-[1.75rem] bg-white/[0.06] backdrop-blur-md border border-white/12 shadow-2xl px-6 pt-5 pb-7">
+                    <div class="flex items-center gap-1.5 pb-5">
+                        <span class="w-2.5 h-2.5 rounded-full bg-white/20"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-white/20"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-white/20"></span>
+                        <span class="ml-2 text-[10px] text-zinc-400">originium.app/u/maria</span>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 rounded-full mx-auto grid place-items-center bg-gradient-to-br from-amber-400 to-orange-600 text-white text-xl font-bold">M</div>
+                        <p class="mt-3 font-display text-lg font-semibold text-white">Maria Silva</p>
+                        <p class="text-xs text-zinc-400">Designer &amp; criadora de conteúdo</p>
+                    </div>
+                    <div class="mt-5 space-y-2.5">
+                        <div class="rounded-xl bg-white/5 border border-white/10 py-2.5 text-center text-sm text-zinc-200">📷 Instagram</div>
+                        <div class="rounded-xl bg-white/5 border border-white/10 py-2.5 text-center text-sm text-zinc-200">🎬 YouTube</div>
+                        <div class="rounded-xl bg-orange-600 py-2.5 text-center text-sm text-white">✨ Meu portfólio</div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Confiado por -->
-    <div class="relative z-10 mx-auto max-w-5xl px-6 mt-14 text-center">
-        <p class="text-xs uppercase tracking-[0.2em] text-zinc-400">Feito para criadores, marcas e profissionais</p>
-        <div class="mt-5 flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-zinc-300 dark:text-zinc-600 font-display text-xl font-medium">
-            <span>Atelier</span><span>Nova</span><span>Lumen</span><span>Vértice</span><span>Studio K</span>
-        </div>
-    </div>
 </section>
+
+<!-- Confiado por -->
+<div class="mx-auto max-w-5xl px-6 mt-14 text-center">
+    <p class="text-xs uppercase tracking-[0.2em] text-zinc-400">Feito para criadores, marcas e profissionais</p>
+    <div class="mt-5 flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-zinc-400 dark:text-zinc-600 font-display text-xl font-medium">
+        <span>Atelier</span><span>Nova</span><span>Lumen</span><span>Vértice</span><span>Studio K</span>
+    </div>
+</div>
 
 <!-- RECURSOS -->
 <section id="recursos" class="mx-auto max-w-6xl px-6 pt-28">

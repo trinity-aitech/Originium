@@ -209,6 +209,35 @@ details[open] .faq-icon { transform: rotate(45deg); }
   .pf-bg::before, .pf-bg::after { animation: none !important; }
 }
 
+/* ---------- Hero com vídeo de fundo (contido, discreto) ---------- */
+.hero-stage {
+  position: relative;
+  background: #08080a;           /* fallback enquanto o vídeo carrega / reduced-motion */
+  isolation: isolate;
+}
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  opacity: .9;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  /* escurece o vídeo para manter a tipografia legível nos dois temas */
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(8,8,10,.35), transparent 60%),
+    linear-gradient(180deg, rgba(8,8,10,.66) 0%, rgba(8,8,10,.48) 42%, rgba(8,8,10,.78) 100%);
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-video { display: none; }   /* respeita quem prefere menos movimento */
+}
+
 /* ---------- Fundo animado da landing (discreto, tom laranja) ---------- */
 .landing-aura {
   position: absolute;
