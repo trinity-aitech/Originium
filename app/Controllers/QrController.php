@@ -6,6 +6,7 @@ namespace App\Controllers;
 
 use App\Core\Auth;
 use App\Core\Controller;
+use App\Core\QrCode;
 
 final class QrController extends Controller
 {
@@ -19,18 +20,19 @@ final class QrController extends Controller
         ]);
     }
 
-    /** Gera/serve o PNG do QR Code do perfil. */
+    /** Gera/serve o PNG do QR Code do perfil (gerado localmente em PHP puro). */
     public function png(): void
     {
         $user = Auth::user();
         $target = $this->absoluteProfileUrl($user['username']);
-        $endpoint = 'https://api.qrserver.com/v1/create-qr-code/?size=600x600&margin=16&qzone=1&format=png&data=' . urlencode($target);
 
-        $png = $this->fetchBinary($endpoint);
-        if ($png === null) {
-            http_response_code(502);
+        try {
+            $png = QrCode::png($target, 10, 4);
+        } catch (\Throwable $e) {
+            error_log('QR: ' . $e->getMessage());
+            http_response_code(500);
             header('Content-Type: text/plain; charset=utf-8');
-            echo 'Não foi possível gerar o QR agora. Verifique a conexão do servidor.';
+            echo 'Não foi possível gerar o QR.';
             return;
         }
 
@@ -47,32 +49,5 @@ final class QrController extends Controller
         $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
         $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
         return $scheme . '://' . $host . url('u/' . $username);
-    }
-
-    private function fetchBinary(string $url): ?string
-    {
-        if (function_exists('curl_init')) {
-            $ch = curl_init($url);
-            curl_setopt_array($ch, [
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_TIMEOUT        => 8,
-                CURLOPT_FOLLOWLOCATION => true,
-                CURLOPT_SSL_VERIFYPEER => true,
-            ]);
-            $data = curl_exec($ch);
-            $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-            curl_close($ch);
-            if ($data !== false && $code === 200) {
-                return $data;
-            }
-        }
-        if (ini_get('allow_url_fopen')) {
-            $ctx = stream_context_create(['http' => ['timeout' => 8]]);
-            $data = @file_get_contents($url, false, $ctx);
-            if ($data !== false) {
-                return $data;
-            }
-        }
-        return null;
     }
 }

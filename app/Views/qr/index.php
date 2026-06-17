@@ -11,5 +11,5 @@
             <button data-copy="<?= e($profileUrl) ?>" data-label="Copiar link" class="px-5 py-2.5 rounded-full glass text-white text-sm hover:bg-white/10 transition">Copiar link</button>
         </div>
     </div>
-    <p class="text-xs text-zinc-600 mt-3">A imagem é gerada no servidor. Em hospedagens sem acesso externo, pode ser necessário habilitar conexões de saída.</p>
+    <p class="text-xs text-zinc-600 mt-3">Gerado 100% no servidor, em PHP puro — sem depender de internet ou serviços externos.</p>
 </div>
