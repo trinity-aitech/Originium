@@ -1,20 +1,28 @@
 <?php
 $features = [
-    ['Acessível',          'Construído com boas práticas e contraste cuidadoso.'],
-    ['Responsivo',         'Perfeito em qualquer tela, do celular ao desktop.'],
-    ['6 temas',            'Paletas minimalistas prontas, troque em um clique.'],
-    ['Fácil de editar',    'Adicione, reordene e ative links sem esforço.'],
-    ['Rápido',             'PHP puro, sem peso de frameworks. Carrega num piscar.'],
-    ['Seguro',             'Senhas com hash, CSRF e proteção contra injeção.'],
-    ['Analytics',          'Veja cliques por link e visitas ao seu perfil.'],
-    ['Pronto p/ hospedar', 'Funciona em hospedagem compartilhada comum.'],
+    ['Sua identidade em um só lugar',
+        'Compartilhe seus links, projetos, redes sociais e informações de contato em uma página feita para representar você.'],
+    ['Conquiste confiança antes do primeiro contato',
+        'Mostre sua forma de trabalhar, disponibilidade, experiência e tudo o que ajuda clientes e visitantes a conhecerem você melhor.'],
+    ['Personalize sem limites',
+        'Escolha temas, cores, galerias e elementos que deixem seu perfil com a sua identidade.'],
+    ['Acompanhe seu crescimento',
+        'Veja visitas, cliques e interações para entender como as pessoas descobrem e acessam seu perfil.'],
+    ['Simples, rápido e acessível',
+        'Uma experiência fluida em qualquer dispositivo, construída para ser fácil de usar e fácil de compartilhar.'],
 ];
 
 $faqs = [
-    ['O Originium é gratuito?', 'Sim. Este é um projeto open-source que você mesmo hospeda — sem mensalidade.'],
-    ['Preciso de Node.js ou banco externo?', 'Não. Roda com PHP 8+ e MySQL, exatamente o que a maioria das hospedagens compartilhadas já oferece.'],
-    ['Meus dados ficam comigo?', 'Totalmente. Você hospeda o sistema, então o banco de dados e os arquivos são seus.'],
-    ['Consigo personalizar o visual?', 'Sim. Há 6 temas e o código é limpo e fácil de ajustar com Tailwind.'],
+    ['O Originium é gratuito?',
+        'Sim. Você pode criar seu perfil, personalizar sua página e usar todos os recursos sem mensalidades da plataforma.'],
+    ['O que torna o Originium diferente?',
+        'O Originium vai além de uma simples página de links. Além de reunir suas redes e projetos em um só lugar, ele ajuda você a mostrar quem é, como trabalha e o que faz de você único.'],
+    ['Posso personalizar meu perfil?',
+        'Sim. Escolha temas, cores e elementos visuais para criar uma página que combine com a sua identidade.'],
+    ['Para quem o Originium foi criado?',
+        'Para criadores, freelancers, profissionais autônomos, estudantes e qualquer pessoa que queira construir uma presença online mais pessoal e autêntica.'],
+    ['Posso começar apenas com meus links?',
+        'Claro. Você pode usar o Originium como uma alternativa simples ao Linktree ou aproveitar recursos extras para apresentar melhor sua história, projetos e forma de trabalhar.'],
 ];
 ?>
 
@@ -83,19 +91,18 @@ $faqs = [
 </div>
 
 <!-- RECURSOS -->
-<section id="recursos" class="mx-auto max-w-6xl px-6 pt-28">
-    <div class="max-w-2xl">
-        <p class="text-sm font-medium text-orange-600">Recursos</p>
-        <h2 class="mt-3 font-display text-4xl sm:text-5xl font-semibold tracking-tight text-zinc-900 dark:text-white leading-[1.05]">
-            Tudo que você precisa. Nada que você não precise.
+<section id="recursos" class="mx-auto max-w-6xl px-6 pt-24 sm:pt-28">
+    <div class="max-w-3xl mx-auto text-center">
+        <h2 class="font-display text-4xl sm:text-5xl font-semibold tracking-tight text-zinc-900 dark:text-white leading-[1.08]">
+            Mostre quem você é, não apenas onde te encontrar.
         </h2>
     </div>
 
-    <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10">
+    <div class="mt-12 sm:mt-16 grid sm:grid-cols-2 gap-x-10 gap-y-9 sm:gap-y-12 max-w-4xl mx-auto">
         <?php foreach ($features as [$titulo, $desc]): ?>
             <div class="border-t border-black/10 dark:border-white/10 pt-5">
-                <h3 class="font-semibold text-zinc-900 dark:text-white"><?= e($titulo) ?></h3>
-                <p class="mt-2 text-sm text-zinc-500 leading-relaxed"><?= e($desc) ?></p>
+                <h3 class="text-lg font-semibold text-zinc-900 dark:text-white"><?= e($titulo) ?></h3>
+                <p class="mt-2 text-[15px] text-zinc-600 dark:text-zinc-400 leading-relaxed"><?= e($desc) ?></p>
             </div>
         <?php endforeach; ?>
     </div>
