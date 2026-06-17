@@ -91,6 +91,142 @@ details[open] .faq-icon { transform: rotate(45deg); }
 .rise-3 { animation: rise 0.7s cubic-bezier(.2,.7,.2,1) 0.2s both; }
 .flash-msg { animation: rise 0.4s ease both; }
 
+/* ============================================================
+   PERFIL PÚBLICO — sistema de tema por variáveis (legibilidade)
+   ============================================================ */
+.pf-body {
+  background: linear-gradient(180deg, var(--pf-bg-from), var(--pf-bg-to));
+  background-attachment: fixed;
+  color: var(--pf-text);
+  min-height: 100vh;
+}
+.pf-text   { color: var(--pf-text); }
+.pf-muted  { color: var(--pf-muted); }
+.pf-accent { color: var(--pf-accent); }
+.pf-border { border-color: var(--pf-border); }
+
+.pf-card {
+  background: var(--pf-surface);
+  border: 1px solid var(--pf-border);
+  color: var(--pf-text);
+  transition: background .2s ease, transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+.pf-card:hover {
+  background: var(--pf-surface-hover);
+  transform: translateY(-1px);
+}
+.pf-link:hover { border-color: var(--pf-accent); }
+
+.pf-btn-accent {
+  background: var(--pf-accent);
+  color: var(--pf-accent-contrast);
+  transition: filter .2s ease, transform .2s ease;
+}
+.pf-btn-accent:hover { filter: brightness(1.08); transform: translateY(-1px); }
+
+.pf-chip {
+  background: var(--pf-surface);
+  border: 1px solid var(--pf-border);
+  color: var(--pf-muted);
+}
+.pf-section-label {
+  color: var(--pf-accent);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  font-size: .7rem;
+  font-weight: 600;
+}
+
+/* ---------- Quote bubble (depoimentos) ---------- */
+.quote-bubble {
+  position: relative;
+  background: var(--pf-surface);
+  border: 1px solid var(--pf-border);
+  border-radius: 1.1rem;
+}
+.quote-bubble::after {
+  content: '';
+  position: absolute;
+  left: 28px;
+  bottom: -9px;
+  width: 16px;
+  height: 16px;
+  background: var(--pf-surface);
+  border-right: 1px solid var(--pf-border);
+  border-bottom: 1px solid var(--pf-border);
+  transform: rotate(45deg);
+}
+
+/* ---------- Slideshow (galeria, CSS scroll-snap) ---------- */
+.slideshow {
+  display: flex;
+  gap: .75rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.slideshow::-webkit-scrollbar { display: none; }
+.slideshow > * { scroll-snap-align: center; flex: 0 0 100%; }
+
+/* ============================================================
+   Fundos animados (sutis, sem neon) — perfil e landing
+   ============================================================ */
+.pf-bg { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.pf-bg + .pf-content { position: relative; z-index: 1; }
+
+.pf-bg--aurora::before,
+.pf-bg--aurora::after,
+.pf-bg--orbs::before,
+.pf-bg--orbs::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--pf-accent), transparent 60%);
+  filter: blur(70px);
+}
+.pf-bg--aurora::before { width: 60vmax; height: 60vmax; top: -22%; left: -12%; opacity: .12; animation: pf-drift-a 34s ease-in-out infinite alternate; }
+.pf-bg--aurora::after  { width: 55vmax; height: 55vmax; bottom: -26%; right: -14%; opacity: .10; animation: pf-drift-b 40s ease-in-out infinite alternate; }
+.pf-bg--orbs::before   { width: 34vmax; height: 34vmax; top: 8%; left: 4%; opacity: .10; animation: pf-drift-a 26s ease-in-out infinite alternate; }
+.pf-bg--orbs::after    { width: 26vmax; height: 26vmax; bottom: 10%; right: 8%; opacity: .08; animation: pf-drift-b 30s ease-in-out infinite alternate; }
+
+.pf-bg--gradient::before {
+  content: '';
+  position: absolute;
+  inset: -20%;
+  background: linear-gradient(130deg, transparent, var(--pf-accent) 50%, transparent);
+  opacity: .07;
+  background-size: 200% 200%;
+  animation: pf-pan 30s ease infinite;
+}
+
+@keyframes pf-drift-a { to { transform: translate(18%, 14%) scale(1.18); } }
+@keyframes pf-drift-b { to { transform: translate(-14%, -10%) scale(1.12); } }
+@keyframes pf-pan { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .pf-bg::before, .pf-bg::after { animation: none !important; }
+}
+
+/* ---------- Fundo animado da landing (discreto, tom laranja) ---------- */
+.landing-aura {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+.landing-aura span {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: .5;
+}
+.landing-aura span:nth-child(1) { width: 38rem; height: 38rem; top: -14rem; left: 50%; margin-left: -19rem; background: radial-gradient(circle, rgba(251,146,60,.18), transparent 65%); animation: pf-drift-a 30s ease-in-out infinite alternate; }
+.landing-aura span:nth-child(2) { width: 26rem; height: 26rem; top: 10rem; left: -8rem; background: radial-gradient(circle, rgba(234,88,12,.10), transparent 65%); animation: pf-drift-b 36s ease-in-out infinite alternate; }
+.landing-aura span:nth-child(3) { width: 26rem; height: 26rem; top: 6rem; right: -8rem; background: radial-gradient(circle, rgba(245,158,11,.10), transparent 65%); animation: pf-drift-a 42s ease-in-out infinite alternate; }
+.dark .landing-aura span:nth-child(1) { background: radial-gradient(circle, rgba(251,146,60,.14), transparent 65%); }
+
 /* ---------- Scrollbar discreta ---------- */
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 99px; }

@@ -38,6 +38,8 @@ storage/logs/  → logs (fora da web)
    ```bash
    mysql -u root originium < database/schema.sql
    mysql -u root originium < database/seed.sql
+   # migrações incrementais (em ordem):
+   mysql -u root originium < database/migrations/002_sprint.sql
    ```
 4. Acesse `http://localhost/Originium/public` (ou o nome da sua pasta + `/public`).
 

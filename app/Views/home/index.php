@@ -20,7 +20,7 @@ $faqs = [
 
 <!-- HERO -->
 <section class="relative overflow-hidden">
-    <div class="glow-soft"></div>
+    <div class="landing-aura" aria-hidden="true"><span></span><span></span><span></span></div>
 
     <div class="relative z-10 mx-auto max-w-6xl px-6 pt-10 sm:pt-16 text-center">
         <h1 class="rise font-display font-semibold tracking-tight text-zinc-900 dark:text-white leading-[0.95]

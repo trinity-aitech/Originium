@@ -10,7 +10,9 @@ use App\Core\Request;
 use App\Core\Session;
 use App\Core\Validator;
 use App\Models\Click;
+use App\Models\ContactMessage;
 use App\Models\Link;
+use App\Models\Testimonial;
 use App\Models\User;
 
 final class DashboardController extends Controller
@@ -27,12 +29,37 @@ final class DashboardController extends Controller
             'views'  => Click::totalViews((int) $user['id']),
         ];
 
+        $checklist = $this->buildChecklist($user, count($links));
+
         $this->view('dashboard/index', [
-            'title' => 'Visão geral',
-            'user'  => $user,
-            'links' => $links,
-            'stats' => $stats,
+            'title'     => 'Visão geral',
+            'user'      => $user,
+            'links'     => $links,
+            'stats'     => $stats,
+            'checklist' => $checklist,
+            'unread'    => ContactMessage::unreadCount((int) $user['id']),
         ]);
+    }
+
+    /** Checklist de conclusão do perfil. */
+    private function buildChecklist(array $user, int $linkCount): array
+    {
+        $uid = (int) $user['id'];
+        $items = [
+            ['Adicionar foto de perfil',  !empty($user['avatar_path']),         'dashboard/profile'],
+            ['Escrever uma bio',          !empty($user['bio']),                 'dashboard/profile'],
+            ['Definir cabeçalho',         !empty($user['headline']),            'dashboard/blueprint'],
+            ['Criar o primeiro link',     $linkCount > 0,                       'dashboard/links'],
+            ['Preencher o blueprint',     !empty($user['bp_values']) || !empty($user['bp_work_method']), 'dashboard/blueprint'],
+            ['Adicionar um depoimento',   Testimonial::countForUser($uid) > 0,  'dashboard/testimonials'],
+        ];
+        $done = count(array_filter($items, static fn ($i) => $i[1]));
+        return [
+            'items'   => $items,
+            'done'    => $done,
+            'total'   => count($items),
+            'percent' => (int) round($done / max(1, count($items)) * 100),
+        ];
     }
 
     public function editProfile(): void

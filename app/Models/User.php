@@ -84,4 +84,45 @@ final class User
         $stmt = Database::pdo()->prepare('UPDATE users SET theme_id = ?, updated_at = NOW() WHERE id = ?');
         $stmt->execute([$themeId, $id]);
     }
+
+    /** Personalização: tema, cor de destaque (hex) e animação de fundo. */
+    public static function updateAppearance(int $id, array $d): void
+    {
+        $stmt = Database::pdo()->prepare(
+            'UPDATE users SET theme_id = ?, accent_color = ?, bg_animation = ?, updated_at = NOW() WHERE id = ?'
+        );
+        $stmt->execute([$d['theme_id'], $d['accent_color'], $d['bg_animation'], $id]);
+    }
+
+    /** Cabeçalho profissional + foco atual. */
+    public static function updateHeadline(int $id, array $d): void
+    {
+        $stmt = Database::pdo()->prepare(
+            'UPDATE users SET headline = ?, bp_current_focus = ?, bp_project_status = ?, updated_at = NOW() WHERE id = ?'
+        );
+        $stmt->execute([$d['headline'], $d['current_focus'], $d['project_status'], $id]);
+    }
+
+    /** Blueprint profissional completo. */
+    public static function updateBlueprint(int $id, array $d): void
+    {
+        $stmt = Database::pdo()->prepare(
+            'UPDATE users SET
+                bp_values = ?, bp_work_method = ?, bp_availability = ?, bp_working_hours = ?,
+                bp_contact_prefs = ?, bp_current_focus = ?, bp_project_status = ?,
+                bp_client_compat = ?, bp_expectations = ?, updated_at = NOW()
+              WHERE id = ?'
+        );
+        $stmt->execute([
+            $d['values'], $d['work_method'], $d['availability'], $d['working_hours'],
+            $d['contact_prefs'], $d['current_focus'], $d['project_status'],
+            $d['client_compat'], $d['expectations'], $id,
+        ]);
+    }
+
+    public static function setContactEnabled(int $id, int $enabled): void
+    {
+        $stmt = Database::pdo()->prepare('UPDATE users SET contact_enabled = ? WHERE id = ?');
+        $stmt->execute([$enabled, $id]);
+    }
 }

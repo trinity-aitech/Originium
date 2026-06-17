@@ -33,6 +33,36 @@ $publicUrl = 'originium.app/u/' . $user['username'];
     <?php endforeach; ?>
 </div>
 
+<!-- Checklist de conclusão do perfil -->
+<?php if ($checklist['done'] < $checklist['total']): ?>
+    <div class="glass rounded-3xl p-6 mb-8">
+        <div class="flex items-center justify-between mb-3">
+            <h2 class="text-lg font-semibold text-white">Complete seu perfil</h2>
+            <span class="text-sm text-zinc-400"><?= $checklist['done'] ?>/<?= $checklist['total'] ?></span>
+        </div>
+        <div class="h-2 rounded-full bg-white/10 overflow-hidden mb-5">
+            <div class="h-full rounded-full bg-orange-500 transition-all duration-500" style="width: <?= $checklist['percent'] ?>%"></div>
+        </div>
+        <ul class="space-y-1.5">
+            <?php foreach ($checklist['items'] as [$label, $done, $link]): ?>
+                <li>
+                    <a href="<?= url($link) ?>" class="flex items-center gap-3 rounded-lg px-2 py-1.5 hover:bg-white/5 transition">
+                        <span class="w-5 h-5 rounded-full grid place-items-center text-xs shrink-0 <?= $done ? 'bg-emerald-500/20 text-emerald-400' : 'border border-white/15 text-transparent' ?>">✓</span>
+                        <span class="text-sm <?= $done ? 'text-zinc-500 line-through' : 'text-zinc-200' ?>"><?= e($label) ?></span>
+                    </a>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+<?php endif; ?>
+
+<?php if (!empty($unread)): ?>
+    <a href="<?= url('dashboard/contact') ?>" class="block glass rounded-2xl px-5 py-4 mb-8 hover:bg-white/5 transition">
+        <span class="text-sm text-white font-medium">✉ <?= (int) $unread ?> nova(s) mensagem(ns)</span>
+        <span class="text-sm text-zinc-500"> — no formulário de contato</span>
+    </a>
+<?php endif; ?>
+
 <!-- Ações rápidas / links recentes -->
 <div class="flex items-center justify-between mb-4">
     <h2 class="text-lg font-semibold text-white">Seus links</h2>

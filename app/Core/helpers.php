@@ -101,3 +101,34 @@ function csrf_field(): string
 {
     return '<input type="hidden" name="_token" value="' . e(csrf_token()) . '">';
 }
+
+/** Normaliza uma cor hex (#rgb ou #rrggbb) ou devolve o fallback. */
+function sanitize_hex(?string $hex, ?string $fallback = null): ?string
+{
+    if (!is_string($hex)) {
+        return $fallback;
+    }
+    $hex = trim($hex);
+    if (preg_match('/^#?[0-9a-fA-F]{6}$/', $hex)) {
+        return '#' . strtolower(ltrim($hex, '#'));
+    }
+    if (preg_match('/^#?[0-9a-fA-F]{3}$/', $hex)) {
+        $h = strtolower(ltrim($hex, '#'));
+        return '#' . $h[0] . $h[0] . $h[1] . $h[1] . $h[2] . $h[2];
+    }
+    return $fallback;
+}
+
+/** Retorna a melhor cor de texto (clara/escura) sobre um fundo hex. */
+function color_contrast(string $hex): string
+{
+    $hex = ltrim($hex, '#');
+    if (strlen($hex) !== 6) {
+        return '#ffffff';
+    }
+    $r = hexdec(substr($hex, 0, 2)) / 255;
+    $g = hexdec(substr($hex, 2, 2)) / 255;
+    $b = hexdec(substr($hex, 4, 2)) / 255;
+    $lum = 0.2126 * $r + 0.7152 * $g + 0.0722 * $b;
+    return $lum > 0.6 ? '#101114' : '#ffffff';
+}
