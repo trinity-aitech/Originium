@@ -72,16 +72,16 @@ $blocks = array_filter([
                 </div>
             <?php endif; ?>
 
-            <h1 class="mt-5 font-display text-3xl font-semibold pf-text"><?= e($name) ?></h1>
+            <h1 class="mt-5 font-display text-4xl font-semibold pf-text"><?= e($name) ?></h1>
             <?php if (!empty($user['headline'])): ?>
-                <p class="mt-1 text-sm font-medium pf-accent"><?= e($user['headline']) ?></p>
+                <p class="mt-1.5 text-base font-medium pf-accent"><?= e($user['headline']) ?></p>
             <?php endif; ?>
             <?php if (!empty($user['bio'])): ?>
-                <p class="mt-3 text-sm pf-muted leading-relaxed"><?= e($user['bio']) ?></p>
+                <p class="mt-3 text-[15px] pf-muted leading-relaxed"><?= e($user['bio']) ?></p>
             <?php endif; ?>
 
             <?php if (!empty($user['bp_current_focus'])): ?>
-                <div class="mt-4 inline-flex items-center gap-2 rounded-full px-3 py-1.5 pf-chip text-xs">
+                <div class="mt-4 inline-flex items-center gap-2 rounded-full px-3.5 py-2 pf-chip text-sm">
                     <span class="w-1.5 h-1.5 rounded-full" style="background: var(--pf-accent)"></span>
                     Foco atual: <?= e($user['bp_current_focus']) ?>
                 </div>
@@ -90,7 +90,7 @@ $blocks = array_filter([
             <?php if ($chips): ?>
                 <div class="mt-3 flex flex-wrap justify-center gap-2">
                     <?php foreach ($chips as $label => $value): ?>
-                        <span class="rounded-full px-3 py-1.5 pf-chip text-xs"><?= e($label) ?>: <?= e($value) ?></span>
+                        <span class="rounded-full px-3.5 py-2 pf-chip text-sm"><?= e($label) ?>: <?= e($value) ?></span>
                     <?php endforeach; ?>
                 </div>
             <?php endif; ?>
@@ -99,9 +99,11 @@ $blocks = array_filter([
         <!-- Links -->
         <section class="mt-10 space-y-3">
             <?php foreach ($links as $link): ?>
+                <?php $svg = social_icon($link['url']); ?>
                 <a href="<?= url('l/' . $link['id']) ?>" target="_blank" rel="noopener noreferrer"
-                   class="pf-card pf-link flex items-center justify-center gap-2 rounded-2xl px-5 py-4 text-center font-medium">
-                    <?php if (!empty($link['icon'])): ?><span><?= e($link['icon']) ?></span><?php endif; ?>
+                   class="pf-card pf-link flex items-center justify-center gap-2.5 rounded-2xl px-5 py-4 text-center font-medium text-[1.05rem]">
+                    <?php if ($svg !== null): ?><?= $svg ?>
+                    <?php elseif (!empty($link['icon'])): ?><span><?= e($link['icon']) ?></span><?php endif; ?>
                     <span><?= e($link['title']) ?></span>
                 </a>
             <?php endforeach; ?>
@@ -115,10 +117,10 @@ $blocks = array_filter([
                     <div class="pf-card rounded-2xl p-4 flex items-center justify-between gap-3">
                         <div class="min-w-0">
                             <?php if (!empty($coupon['discount_label'])): ?>
-                                <span class="text-sm font-semibold pf-accent"><?= e($coupon['discount_label']) ?></span>
+                                <span class="text-base font-semibold pf-accent"><?= e($coupon['discount_label']) ?></span>
                             <?php endif; ?>
                             <?php if (!empty($coupon['description'])): ?>
-                                <p class="text-xs pf-muted truncate"><?= e($coupon['description']) ?></p>
+                                <p class="text-sm pf-muted truncate"><?= e($coupon['description']) ?></p>
                             <?php endif; ?>
                         </div>
                         <?php $code = strtoupper($coupon['code']); ?>
@@ -136,8 +138,8 @@ $blocks = array_filter([
             <section class="mt-10 space-y-3">
                 <?php foreach ($blocks as $label => $value): ?>
                     <div class="pf-card rounded-2xl p-5">
-                        <p class="pf-section-label mb-2"><?= e($label) ?></p>
-                        <p class="text-sm pf-text leading-relaxed whitespace-pre-line"><?= e($value) ?></p>
+                        <p class="pf-section-label mb-2.5"><?= e($label) ?></p>
+                        <p class="text-[15px] pf-text leading-relaxed whitespace-pre-line"><?= e($value) ?></p>
                     </div>
                 <?php endforeach; ?>
             </section>
@@ -166,12 +168,12 @@ $blocks = array_filter([
                 <p class="pf-section-label">Recomendações</p>
                 <?php foreach ($testimonials as $t): ?>
                     <div>
-                        <blockquote class="quote-bubble p-4 text-sm pf-text leading-relaxed">"<?= e($t['quote']) ?>"</blockquote>
-                        <div class="mt-3 ml-2 flex items-center gap-2">
-                            <span class="w-7 h-7 rounded-full grid place-items-center text-xs font-bold pf-btn-accent"><?= e(mb_strtoupper(mb_substr($t['author_name'], 0, 1))) ?></span>
+                        <blockquote class="quote-bubble p-4 text-[15px] pf-text leading-relaxed">"<?= e($t['quote']) ?>"</blockquote>
+                        <div class="mt-3 ml-2 flex items-center gap-2.5">
+                            <span class="w-8 h-8 rounded-full grid place-items-center text-sm font-bold pf-btn-accent"><?= e(mb_strtoupper(mb_substr($t['author_name'], 0, 1))) ?></span>
                             <div>
-                                <p class="text-xs font-semibold pf-text"><?= e($t['author_name']) ?></p>
-                                <?php if (!empty($t['author_role'])): ?><p class="text-[11px] pf-muted"><?= e($t['author_role']) ?></p><?php endif; ?>
+                                <p class="text-sm font-semibold pf-text"><?= e($t['author_name']) ?></p>
+                                <?php if (!empty($t['author_role'])): ?><p class="text-xs pf-muted"><?= e($t['author_role']) ?></p><?php endif; ?>
                             </div>
                         </div>
                     </div>
@@ -187,9 +189,9 @@ $blocks = array_filter([
                     <?php foreach ($timeline as $ev): ?>
                         <li class="pl-5 relative">
                             <span class="absolute -left-[5px] top-1.5 w-2 h-2 rounded-full" style="background: var(--pf-accent)"></span>
-                            <p class="text-xs font-medium pf-accent"><?= e($ev['period']) ?></p>
-                            <p class="text-sm font-semibold pf-text"><?= e($ev['title']) ?></p>
-                            <?php if (!empty($ev['description'])): ?><p class="text-xs pf-muted mt-0.5 leading-relaxed"><?= e($ev['description']) ?></p><?php endif; ?>
+                            <p class="text-sm font-medium pf-accent"><?= e($ev['period']) ?></p>
+                            <p class="text-base font-semibold pf-text"><?= e($ev['title']) ?></p>
+                            <?php if (!empty($ev['description'])): ?><p class="text-sm pf-muted mt-0.5 leading-relaxed"><?= e($ev['description']) ?></p><?php endif; ?>
                         </li>
                     <?php endforeach; ?>
                 </ol>
@@ -202,11 +204,11 @@ $blocks = array_filter([
                 <p class="pf-section-label mb-1">Perguntas frequentes</p>
                 <?php foreach ($faqs as $faq): ?>
                     <details class="pf-card rounded-2xl px-4 py-1">
-                        <summary class="flex items-center justify-between py-3 text-sm font-medium pf-text">
+                        <summary class="flex items-center justify-between py-3.5 text-base font-medium pf-text">
                             <?= e($faq['question']) ?>
-                            <span class="faq-icon text-lg pf-muted leading-none">+</span>
+                            <span class="faq-icon text-xl pf-muted leading-none">+</span>
                         </summary>
-                        <p class="pb-3 text-sm pf-muted leading-relaxed whitespace-pre-line"><?= e($faq['answer']) ?></p>
+                        <p class="pb-3.5 text-[15px] pf-muted leading-relaxed whitespace-pre-line"><?= e($faq['answer']) ?></p>
                     </details>
                 <?php endforeach; ?>
             </section>
@@ -222,17 +224,17 @@ $blocks = array_filter([
                         $fname = 'field_' . $f['id'];
                         $req = (int) $f['is_required'] === 1 ? 'required' : ''; ?>
                         <div>
-                            <label class="block text-xs font-medium pf-muted mb-1.5"><?= e($f['label']) ?><?= $req ? ' *' : '' ?></label>
+                            <label class="block text-sm font-medium pf-muted mb-1.5"><?= e($f['label']) ?><?= $req ? ' *' : '' ?></label>
                             <?php if ($f['field_type'] === 'textarea'): ?>
                                 <textarea name="<?= e($fname) ?>" rows="3" <?= $req ?> placeholder="<?= e($f['placeholder'] ?? '') ?>"
-                                          class="w-full rounded-xl px-3 py-2 text-sm outline-none pf-card resize-none"></textarea>
+                                          class="w-full rounded-xl px-3.5 py-2.5 text-base outline-none pf-card resize-none"></textarea>
                             <?php else: ?>
                                 <input type="<?= e($f['field_type']) ?>" name="<?= e($fname) ?>" <?= $req ?> placeholder="<?= e($f['placeholder'] ?? '') ?>"
-                                       class="w-full rounded-xl px-3 py-2 text-sm outline-none pf-card">
+                                       class="w-full rounded-xl px-3.5 py-2.5 text-base outline-none pf-card">
                             <?php endif; ?>
                         </div>
                     <?php endforeach; ?>
-                    <button class="w-full rounded-xl py-2.5 text-sm font-medium pf-btn-accent">Enviar mensagem</button>
+                    <button class="w-full rounded-xl py-3 text-base font-medium pf-btn-accent">Enviar mensagem</button>
                 </form>
             </section>
         <?php endif; ?>

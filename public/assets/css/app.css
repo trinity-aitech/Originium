@@ -107,10 +107,11 @@ details[open] .faq-icon { transform: rotate(45deg); }
 
 .pf-card {
   background: var(--pf-surface);
-  border: 1px solid var(--pf-border);
+  border: 1.5px solid var(--pf-border);
   color: var(--pf-text);
   transition: background .2s ease, transform .2s ease, border-color .2s ease, box-shadow .2s ease;
 }
+.pf-icon { width: 1.2em; height: 1.2em; }
 .pf-card:hover {
   background: var(--pf-surface-hover);
   transform: translateY(-1px);
@@ -133,7 +134,7 @@ details[open] .faq-icon { transform: rotate(45deg); }
   color: var(--pf-accent);
   letter-spacing: .14em;
   text-transform: uppercase;
-  font-size: .7rem;
+  font-size: .78rem;
   font-weight: 600;
 }
 

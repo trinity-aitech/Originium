@@ -119,6 +119,12 @@ function sanitize_hex(?string $hex, ?string $fallback = null): ?string
     return $fallback;
 }
 
+/** Ícone SVG da rede social detectada na URL (ou null). */
+function social_icon(?string $url): ?string
+{
+    return \App\Core\SocialIcons::svg($url);
+}
+
 /** Retorna a melhor cor de texto (clara/escura) sobre um fundo hex. */
 function color_contrast(string $hex): string
 {
