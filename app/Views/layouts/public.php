@@ -6,7 +6,6 @@
 
         <div class="hidden md:flex items-center gap-9 text-sm font-medium text-zinc-600 dark:text-zinc-400">
             <a href="<?= url('/#recursos') ?>" class="hover:text-zinc-900 dark:hover:text-white transition">Recursos</a>
-            <a href="<?= url('/#temas') ?>" class="hover:text-zinc-900 dark:hover:text-white transition">Temas</a>
             <a href="<?= url('/#faq') ?>" class="hover:text-zinc-900 dark:hover:text-white transition">FAQ</a>
         </div>
 
@@ -36,7 +35,6 @@
             <h4 class="text-sm font-semibold text-zinc-900 dark:text-white mb-3">Produto</h4>
             <ul class="space-y-2.5 text-sm text-zinc-500">
                 <li><a href="<?= url('/#recursos') ?>" class="hover:text-zinc-900 dark:hover:text-zinc-200 transition">Recursos</a></li>
-                <li><a href="<?= url('/#temas') ?>" class="hover:text-zinc-900 dark:hover:text-zinc-200 transition">Temas</a></li>
                 <li><a href="<?= url('/#faq') ?>" class="hover:text-zinc-900 dark:hover:text-zinc-200 transition">FAQ</a></li>
             </ul>
         </div>

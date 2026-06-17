@@ -26,9 +26,9 @@ $faqs = [
 ];
 ?>
 
-<!-- HERO com vídeo de fundo (contido, com bordas, em loop mudo) -->
-<section class="px-3 sm:px-5 pt-4">
-    <div class="hero-stage relative overflow-hidden rounded-[2rem] sm:rounded-[2.5rem] border border-white/10 mx-auto max-w-7xl">
+<!-- HERO com vídeo de fundo (retangular, amplo, em loop mudo) -->
+<section class="px-2.5 sm:px-4 pt-3 sm:pt-4">
+    <div class="hero-stage relative overflow-hidden rounded-[1.75rem] sm:rounded-[2.5rem] border border-white/10 mx-auto w-full max-w-[1760px] min-h-[74vh] sm:min-h-[86vh] flex items-center">
         <!-- Vídeo de fundo: mudo, em loop, sem controles -->
         <video class="hero-video" autoplay muted loop playsinline preload="auto" disablepictureinpicture aria-hidden="true">
             <source src="<?= asset('videos/hero.mp4') ?>" type="video/mp4">
@@ -36,7 +36,7 @@ $faqs = [
         <div class="hero-overlay" aria-hidden="true"></div>
 
         <!-- Conteúdo do hero (sempre claro sobre o vídeo) -->
-        <div class="relative z-10 px-6 pt-16 sm:pt-24 pb-12 text-center">
+        <div class="relative z-10 w-full px-6 py-14 sm:py-20 text-center">
             <h1 class="rise font-display font-semibold tracking-tight text-white leading-[0.95]
                        text-6xl sm:text-7xl md:text-8xl lg:text-[8rem]"
                 style="text-shadow:0 2px 40px rgba(0,0,0,.4)">
@@ -83,11 +83,8 @@ $faqs = [
 </section>
 
 <!-- Confiado por -->
-<div class="mx-auto max-w-5xl px-6 mt-14 text-center">
+<div class="mx-auto max-w-5xl px-6 mt-12 text-center">
     <p class="text-xs uppercase tracking-[0.2em] text-zinc-400">Feito para criadores, marcas e profissionais</p>
-    <div class="mt-5 flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-zinc-400 dark:text-zinc-600 font-display text-xl font-medium">
-        <span>Atelier</span><span>Nova</span><span>Lumen</span><span>Vértice</span><span>Studio K</span>
-    </div>
 </div>
 
 <!-- RECURSOS -->
@@ -103,33 +100,6 @@ $faqs = [
             <div class="border-t border-black/10 dark:border-white/10 pt-5">
                 <h3 class="text-lg font-semibold text-zinc-900 dark:text-white"><?= e($titulo) ?></h3>
                 <p class="mt-2 text-[15px] text-zinc-600 dark:text-zinc-400 leading-relaxed"><?= e($desc) ?></p>
-            </div>
-        <?php endforeach; ?>
-    </div>
-</section>
-
-<!-- TEMAS -->
-<section id="temas" class="mx-auto max-w-6xl px-6 pt-28">
-    <div class="max-w-2xl">
-        <p class="text-sm font-medium text-orange-600">Temas</p>
-        <h2 class="mt-3 font-display text-4xl sm:text-5xl font-semibold tracking-tight text-zinc-900 dark:text-white">
-            Seis paletas. Um clique.
-        </h2>
-    </div>
-    <div class="mt-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-        <?php
-        $previews = [
-            ['Glacier',  'bg-gradient-to-b from-slate-700 to-slate-900'],
-            ['Midnight', 'bg-gradient-to-b from-indigo-900 to-black'],
-            ['Aurora',   'bg-gradient-to-b from-teal-800 to-slate-900'],
-            ['Graphite', 'bg-neutral-900'],
-            ['Frost',    'bg-gradient-to-b from-sky-100 to-slate-200'],
-            ['Arctic',   'bg-gradient-to-b from-zinc-100 to-white'],
-        ];
-        foreach ($previews as [$nome, $bg]): ?>
-            <div>
-                <div class="h-28 rounded-2xl <?= $bg ?> border border-black/5 dark:border-white/10"></div>
-                <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400 text-center"><?= e($nome) ?></p>
             </div>
         <?php endforeach; ?>
     </div>
