@@ -29,7 +29,7 @@ $blocks = array_filter([
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="<?= asset('css/app.css') ?>">
+    <link rel="stylesheet" href="<?= asset_v('css/app.css') ?>">
     <style>
         body { font-family: 'Inter', system-ui, sans-serif; }
         .font-display { font-family: 'Fraunces', Georgia, serif; }
@@ -263,6 +263,6 @@ $blocks = array_filter([
         </footer>
     </main>
 
-    <script src="<?= asset('js/app.js') ?>"></script>
+    <script src="<?= asset_v('js/app.js') ?>"></script>
 </body>
 </html>

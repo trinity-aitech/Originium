@@ -39,6 +39,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="<?= asset('css/app.css') ?>">
+    <link rel="stylesheet" href="<?= asset_v('css/app.css') ?>">
 </head>
 <body class="min-h-screen font-sans antialiased <?= $bodyClass ?? 'bg-paper text-zinc-900 dark:bg-ink dark:text-zinc-200' ?>">

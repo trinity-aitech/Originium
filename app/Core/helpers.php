@@ -33,6 +33,19 @@ function asset(string $path): string
     return url('assets/' . ltrim($path, '/'));
 }
 
+/**
+ * URL de asset com "cache-busting": acrescenta ?v=<modificado> para o
+ * navegador buscar a versão nova sempre que o arquivo mudar (CSS/JS).
+ */
+function asset_v(string $path): string
+{
+    $rel = ltrim($path, '/');
+    $base = defined('PUBLIC_DIR') ? PUBLIC_DIR : (defined('BASE_DIR') ? BASE_DIR . '/public' : '');
+    $full = $base . '/assets/' . $rel;
+    $url = asset($rel);
+    return is_file($full) ? $url . '?v=' . filemtime($full) : $url;
+}
+
 /** Escapa saída para HTML (anti-XSS). */
 function e($value): string
 {
