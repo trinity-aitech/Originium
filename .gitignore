@@ -21,3 +21,5 @@ Desktop.ini
 dev-router.php
 .claude/
 qrtmp/
+
+build_deploy/
