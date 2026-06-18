@@ -20,5 +20,16 @@
     Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
 </IfModule>
 
+# Bloqueia arquivos sensíveis (caso fiquem na raiz pública, ex.: InfinityFree)
+<FilesMatch "(^\.env|\.(env|sql|md|json|lock|sh|ya?ml)|^\.git)">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
 # Sem listagem de diretórios
 Options -Indexes

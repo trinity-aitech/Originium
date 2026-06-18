@@ -10,7 +10,14 @@ declare(strict_types=1);
 | PSR-4 próprio (sem Composer) e entrega o controle ao Router.
 */
 
-define('BASE_DIR', dirname(__DIR__));
+/*
+ | BASE_DIR aponta para a raiz do projeto (onde ficam app/, config/, ...).
+ | - Local (XAMPP): este index.php está em /public, então a raiz é a pasta acima.
+ | - Hospedagem sem docroot configurável (ex.: InfinityFree): copie o conteúdo
+ |   de /public para a raiz pública (htdocs) junto com app/, config/, etc.;
+ |   aqui detectamos isso automaticamente.
+ */
+define('BASE_DIR', is_dir(__DIR__ . '/app') ? __DIR__ : dirname(__DIR__));
 
 require BASE_DIR . '/app/Core/helpers.php';
 
