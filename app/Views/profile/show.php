@@ -102,8 +102,7 @@ $blocks = array_filter([
                 <?php $svg = social_icon($link['url']); ?>
                 <a href="<?= url('l/' . $link['id']) ?>" target="_blank" rel="noopener noreferrer"
                    class="pf-card pf-link flex items-center justify-center gap-2.5 rounded-2xl px-5 py-4 text-center font-medium text-[1.05rem]">
-                    <?php if ($svg !== null): ?><?= $svg ?>
-                    <?php elseif (!empty($link['icon'])): ?><span><?= e($link['icon']) ?></span><?php endif; ?>
+                    <?php if ($svg !== null): ?><?= $svg ?><?php endif; ?>
                     <span><?= e($link['title']) ?></span>
                 </a>
             <?php endforeach; ?>
@@ -145,19 +144,25 @@ $blocks = array_filter([
             </section>
         <?php endif; ?>
 
-        <!-- Galeria (slideshow) -->
+        <!-- Galeria (slideshow com navegação) -->
         <?php if (!empty($gallery)): ?>
             <section class="mt-10">
                 <p class="pf-section-label mb-3">Galeria</p>
-                <div class="slideshow rounded-2xl">
-                    <?php foreach ($gallery as $img): ?>
-                        <figure class="relative rounded-2xl overflow-hidden">
-                            <img src="<?= asset($img['image_path']) ?>" alt="<?= e($img['caption'] ?? '') ?>" class="w-full h-60 object-cover">
-                            <?php if (!empty($img['caption'])): ?>
-                                <figcaption class="absolute bottom-0 inset-x-0 p-3 text-xs text-white bg-gradient-to-t from-black/60 to-transparent"><?= e($img['caption']) ?></figcaption>
-                            <?php endif; ?>
-                        </figure>
-                    <?php endforeach; ?>
+                <div class="relative" data-gallery>
+                    <div class="slideshow rounded-2xl" data-gallery-track>
+                        <?php foreach ($gallery as $img): ?>
+                            <figure class="relative rounded-2xl overflow-hidden">
+                                <img src="<?= asset($img['image_path']) ?>" alt="<?= e($img['caption'] ?? '') ?>" class="w-full h-60 object-cover">
+                                <?php if (!empty($img['caption'])): ?>
+                                    <figcaption class="absolute bottom-0 inset-x-0 p-3 text-xs text-white bg-gradient-to-t from-black/60 to-transparent"><?= e($img['caption']) ?></figcaption>
+                                <?php endif; ?>
+                            </figure>
+                        <?php endforeach; ?>
+                    </div>
+                    <?php if (count($gallery) > 1): ?>
+                        <button type="button" data-gallery-prev aria-label="Imagem anterior" class="gal-nav gal-prev">&#8249;</button>
+                        <button type="button" data-gallery-next aria-label="Próxima imagem" class="gal-nav gal-next">&#8250;</button>
+                    <?php endif; ?>
                 </div>
             </section>
         <?php endif; ?>
@@ -236,6 +241,18 @@ $blocks = array_filter([
                     <?php endforeach; ?>
                     <button class="w-full rounded-xl py-3 text-base font-medium pf-btn-accent">Enviar mensagem</button>
                 </form>
+            </section>
+        <?php endif; ?>
+
+        <!-- QR Code do perfil -->
+        <?php if ((int) ($user['show_qr'] ?? 0) === 1): ?>
+            <section class="mt-10 text-center">
+                <p class="pf-section-label mb-3">QR Code</p>
+                <div class="inline-block rounded-2xl bg-white p-3 shadow-lg" style="box-shadow:0 8px 30px rgba(0,0,0,.18)">
+                    <img src="<?= url('u/' . $user['username'] . '/qr.png') ?>" alt="QR Code do perfil"
+                         width="168" height="168" class="block w-40 h-40" loading="lazy">
+                </div>
+                <p class="mt-3 text-sm pf-muted">Aponte a câmera para abrir este perfil.</p>
             </section>
         <?php endif; ?>
 

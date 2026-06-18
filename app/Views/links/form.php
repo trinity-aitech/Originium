@@ -25,13 +25,7 @@ $active = $isEdit ? (int) $link['is_active'] === 1 : true;
                    class="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-2.5 text-white placeholder-zinc-500 focus:border-sky-400/50 focus:ring-2 focus:ring-sky-400/20 outline-none transition"
                    placeholder="https://instagram.com/voce">
             <?php if ($m = error_for('url')): ?><p class="mt-1 text-xs text-rose-400"><?= e($m) ?></p><?php endif; ?>
-        </div>
-
-        <div>
-            <label class="block text-sm text-zinc-300 mb-1.5">Ícone <span class="text-zinc-500">(opcional — um emoji)</span></label>
-            <input type="text" name="icon" value="<?= $val('icon') ?>" maxlength="40"
-                   class="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-2.5 text-white placeholder-zinc-500 focus:border-sky-400/50 focus:ring-2 focus:ring-sky-400/20 outline-none transition"
-                   placeholder="📷">
+            <p class="mt-1.5 text-xs text-zinc-500">O ícone da rede (Instagram, LinkedIn, WhatsApp…) aparece automaticamente no perfil, conforme o link.</p>
         </div>
 
         <label class="flex items-center gap-3 cursor-pointer">

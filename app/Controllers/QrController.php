@@ -7,6 +7,8 @@ namespace App\Controllers;
 use App\Core\Auth;
 use App\Core\Controller;
 use App\Core\QrCode;
+use App\Core\Session;
+use App\Models\User;
 
 final class QrController extends Controller
 {
@@ -20,12 +22,34 @@ final class QrController extends Controller
         ]);
     }
 
-    /** Gera/serve o PNG do QR Code do perfil (gerado localmente em PHP puro). */
+    /** Liga/desliga a exibição do QR no perfil público. */
+    public function toggleProfile(): void
+    {
+        $user = Auth::user();
+        User::setShowQr((int) $user['id'], (int) $user['show_qr'] === 1 ? 0 : 1);
+        Session::flash('success', 'Preferência do QR Code atualizada.');
+        redirect('dashboard/qr');
+    }
+
+    /** PNG do QR do próprio usuário (dashboard, requer login). */
     public function png(): void
     {
         $user = Auth::user();
-        $target = $this->absoluteProfileUrl($user['username']);
+        $this->streamQr($this->absoluteProfileUrl($user['username']), $user['username'], isset($_GET['download']));
+    }
 
+    /** PNG público do QR de um perfil (se o dono ativou a exibição). */
+    public function publicPng(string $username): void
+    {
+        $user = User::findByUsername(strtolower($username));
+        if (!$user || (int) $user['is_active'] !== 1 || (int) $user['show_qr'] !== 1) {
+            $this->notFound();
+        }
+        $this->streamQr($this->absoluteProfileUrl($user['username']), $user['username'], false);
+    }
+
+    private function streamQr(string $target, string $username, bool $download): void
+    {
         try {
             $png = QrCode::png($target, 10, 4);
         } catch (\Throwable $e) {
@@ -37,9 +61,9 @@ final class QrController extends Controller
         }
 
         header('Content-Type: image/png');
-        header('Cache-Control: private, max-age=86400');
-        if (isset($_GET['download'])) {
-            header('Content-Disposition: attachment; filename="originium-' . $user['username'] . '.png"');
+        header('Cache-Control: public, max-age=86400');
+        if ($download) {
+            header('Content-Disposition: attachment; filename="originium-' . $username . '.png"');
         }
         echo $png;
     }

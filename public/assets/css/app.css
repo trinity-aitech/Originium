@@ -170,6 +170,32 @@ details[open] .faq-icon { transform: rotate(45deg); }
 .slideshow::-webkit-scrollbar { display: none; }
 .slideshow > * { scroll-snap-align: center; flex: 0 0 100%; }
 
+/* Setas discretas de navegação da galeria */
+.gal-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 9999px;
+  font-size: 22px;
+  line-height: 1;
+  color: #fff;
+  background: rgba(0, 0, 0, .42);
+  border: 1px solid rgba(255, 255, 255, .15);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  opacity: .7;
+  cursor: pointer;
+  z-index: 3;
+  transition: opacity .2s ease, background .2s ease;
+}
+.gal-nav:hover { opacity: 1; background: rgba(0, 0, 0, .62); }
+.gal-prev { left: .6rem; }
+.gal-next { right: .6rem; }
+
 /* ============================================================
    Fundos animados (sutis, sem neon) — perfil e landing
    ============================================================ */

@@ -125,4 +125,10 @@ final class User
         $stmt = Database::pdo()->prepare('UPDATE users SET contact_enabled = ? WHERE id = ?');
         $stmt->execute([$enabled, $id]);
     }
+
+    public static function setShowQr(int $id, int $enabled): void
+    {
+        $stmt = Database::pdo()->prepare('UPDATE users SET show_qr = ? WHERE id = ?');
+        $stmt->execute([$enabled, $id]);
+    }
 }

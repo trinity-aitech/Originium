@@ -20,6 +20,17 @@
     }
   });
 
+  // Galeria do perfil: navegação anterior / próxima
+  document.addEventListener('click', function (e) {
+    const prev = e.target.closest('[data-gallery-prev]');
+    const next = e.target.closest('[data-gallery-next]');
+    if (!prev && !next) return;
+    const wrap = e.target.closest('[data-gallery]');
+    const track = wrap && wrap.querySelector('[data-gallery-track]');
+    if (!track) return;
+    track.scrollBy({ left: next ? track.clientWidth : -track.clientWidth, behavior: 'smooth' });
+  });
+
   // Botão de copiar (ex.: link público do perfil)
   document.addEventListener('click', function (e) {
     const btn = e.target.closest('[data-copy]');

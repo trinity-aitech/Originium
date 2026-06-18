@@ -87,14 +87,16 @@ return [
     ['POST', '/dashboard/contact/messages/{id}/delete', 'ContactController@deleteMessage', ['auth', 'csrf']],
 
     // QR Code
-    ['GET',  '/dashboard/qr',                       'QrController@index', ['auth']],
-    ['GET',  '/dashboard/qr/png',                   'QrController@png',   ['auth']],
+    ['GET',  '/dashboard/qr',                       'QrController@index',         ['auth']],
+    ['GET',  '/dashboard/qr/png',                   'QrController@png',           ['auth']],
+    ['POST', '/dashboard/qr/toggle',                'QrController@toggleProfile', ['auth', 'csrf']],
 
     // Analytics
     ['GET',  '/dashboard/analytics',                'AnalyticsController@index', ['auth']],
 
     // Perfil público + redirecionamento rastreável
     ['POST', '/u/{username}/contact',               'ContactController@submit', ['csrf']],
+    ['GET',  '/u/{username}/qr.png',                'QrController@publicPng'],
     ['GET',  '/u/{username}',                       'ProfileController@show'],
     ['GET',  '/l/{id}',                             'RedirectController@go'],
 ];

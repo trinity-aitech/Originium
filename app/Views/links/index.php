@@ -27,7 +27,7 @@
                 <!-- Info -->
                 <div class="flex-1 min-w-0">
                     <div class="flex items-center gap-2">
-                        <?php if (!empty($link['icon'])): ?><span class="text-base"><?= e($link['icon']) ?></span><?php endif; ?>
+                        <?php $svg = social_icon($link['url']); if ($svg): ?><span class="text-zinc-300 shrink-0"><?= $svg ?></span><?php endif; ?>
                         <p class="text-white font-medium truncate"><?= e($link['title']) ?></p>
                         <?php if ((int) $link['is_active'] !== 1): ?>
                             <span class="text-[10px] uppercase tracking-wide px-2 py-0.5 rounded-full bg-zinc-700/50 text-zinc-400">oculto</span>

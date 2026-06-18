@@ -27,8 +27,8 @@ $faqs = [
 ?>
 
 <!-- HERO com vídeo de fundo (retangular, amplo, em loop mudo) -->
-<section class="px-2 sm:px-3 pt-2 sm:pt-3">
-    <div class="hero-stage relative overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] border border-white/10 mx-auto w-full max-w-[1840px] min-h-[64vh] sm:min-h-[78vh] flex items-center">
+<section>
+    <div class="hero-stage relative overflow-hidden w-full min-h-[68vh] sm:min-h-[84vh] flex items-center">
         <!-- Vídeo de fundo: mudo, em loop, sem controles -->
         <video class="hero-video" autoplay muted loop playsinline preload="auto" disablepictureinpicture aria-hidden="true">
             <source src="<?= asset('videos/hero.mp4') ?>" type="video/mp4">

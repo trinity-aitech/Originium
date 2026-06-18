@@ -36,7 +36,7 @@ final class LinkController extends Controller
         Link::create((int) Auth::id(), [
             'title'     => trim($_POST['title']),
             'url'       => trim($_POST['url']),
-            'icon'      => trim($_POST['icon'] ?? ''),
+            'icon'      => '',
             'is_active' => isset($_POST['is_active']) ? 1 : 0,
         ]);
 
@@ -69,7 +69,7 @@ final class LinkController extends Controller
         Link::update((int) $id, (int) Auth::id(), [
             'title'     => trim($_POST['title']),
             'url'       => trim($_POST['url']),
-            'icon'      => trim($_POST['icon'] ?? ''),
+            'icon'      => '',
             'is_active' => isset($_POST['is_active']) ? 1 : 0,
         ]);
 
@@ -101,8 +101,7 @@ final class LinkController extends Controller
     {
         $v = new Validator($_POST);
         $v->required('title', 'Título')->max('title', 80, 'Título')
-          ->required('url', 'URL')->url('url', 'URL')->max('url', 2048, 'URL')
-          ->max('icon', 40, 'Ícone');
+          ->required('url', 'URL')->url('url', 'URL')->max('url', 2048, 'URL');
         return $v;
     }
 }

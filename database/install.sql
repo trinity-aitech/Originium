@@ -1,6 +1,5 @@
 -- Originium — instalação/reinstalação COMPLETA e segura
 -- Pode reimportar quantas vezes quiser: apaga tudo e recria do zero.
--- Importe no phpMyAdmin do banco if0_41902432_originium_db
 
 SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS contact_messages, contact_fields, coupons, gallery_images, timeline_events, profile_faqs, testimonials, profile_views, clicks, links, users, themes;
@@ -266,3 +265,10 @@ SET NAMES utf8mb4;
 
 UPDATE themes SET border_color = 'rgba(255,255,255,0.18)', surface_hover = 'rgba(255,255,255,0.10)' WHERE is_dark = 1;
 UPDATE themes SET border_color = 'rgba(15,23,42,0.16)',   surface_hover = '#eef2f8'                  WHERE is_dark = 0;
+
+-- Originium — migração 004
+-- Opção de exibir o QR Code do link no perfil público.
+SET NAMES utf8mb4;
+
+ALTER TABLE users
+    ADD COLUMN show_qr TINYINT(1) NOT NULL DEFAULT 0 AFTER contact_enabled;
