@@ -1,5 +1,10 @@
--- Originium — instalação completa (schema + seed + migrações 002 e 003)
--- Importe este arquivo no phpMyAdmin do banco if0_41902432_originium_db
+-- Originium — instalação/reinstalação COMPLETA e segura
+-- Pode reimportar quantas vezes quiser: apaga tudo e recria do zero.
+-- Importe no phpMyAdmin do banco if0_41902432_originium_db
+
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE IF EXISTS contact_messages, contact_fields, coupons, gallery_images, timeline_events, profile_faqs, testimonials, profile_views, clicks, links, users, themes;
+SET FOREIGN_KEY_CHECKS=1;
 
 -- Originium — esquema do banco de dados
 -- MySQL 5.7+/8+ · utf8mb4 · InnoDB
