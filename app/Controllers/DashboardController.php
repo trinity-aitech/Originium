@@ -120,7 +120,7 @@ final class DashboardController extends Controller
         }
 
         $name = bin2hex(random_bytes(8)) . '.' . $allowed[$mime];
-        $dir  = BASE_DIR . '/public/assets/uploads';
+        $dir  = PUBLIC_DIR . '/assets/uploads';
         if (!is_dir($dir)) {
             mkdir($dir, 0775, true);
         }

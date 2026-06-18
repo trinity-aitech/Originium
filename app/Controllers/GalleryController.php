@@ -44,7 +44,7 @@ final class GalleryController extends Controller
     {
         $img = GalleryImage::findOwned((int) $id, (int) Auth::id());
         if ($img) {
-            $full = BASE_DIR . '/public/assets/' . $img['image_path'];
+            $full = PUBLIC_DIR . '/assets/' . $img['image_path'];
             if (is_file($full)) {
                 @unlink($full);
             }
@@ -74,7 +74,7 @@ final class GalleryController extends Controller
             return null;
         }
         $name = 'gallery_' . bin2hex(random_bytes(8)) . '.' . $allowed[$mime];
-        $dir = BASE_DIR . '/public/assets/uploads';
+        $dir = PUBLIC_DIR . '/assets/uploads';
         if (!is_dir($dir)) {
             mkdir($dir, 0775, true);
         }

@@ -19,6 +19,11 @@ declare(strict_types=1);
  */
 define('BASE_DIR', is_dir(__DIR__ . '/app') ? __DIR__ : dirname(__DIR__));
 
+// Raiz pública (onde está este index.php e a pasta assets/). Vale tanto local
+// (/public) quanto em hospedagem "flat" (htdocs) — usado para salvar uploads
+// exatamente onde eles são servidos pela web.
+define('PUBLIC_DIR', __DIR__);
+
 require BASE_DIR . '/app/Core/helpers.php';
 
 spl_autoload_register(static function (string $class): void {
